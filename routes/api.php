@@ -1,10 +1,16 @@
 <?php
 
+use App\Http\Controllers\FeedController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => '1.0'], function () {
+
+    Route::group(['prefix' => 'feeds'], function () {
+        Route::get("/", [FeedController::class, 'index']);
+        Route::post("/seeder", [FeedController::class, 'seeder']);
+    });
 
     Route::group(['prefix' => 'users'], function () {
         Route::post("/login", [UserController::class, 'login']);
